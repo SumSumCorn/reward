@@ -49,7 +49,8 @@ def init_assistant():
 
 
 def chatWidget():
-    if not ss.oaik:
+    ss["oaik"] = st.secrets["OPENAI_API_KEY"]
+    if "oaik" not in ss:
         st.text_input("enter openai api key", type="password", key="oaik")
         st.error("Please enter your open api key!")
         st.stop()
