@@ -69,7 +69,7 @@ def chatWidget():
         ]
 
         ss.stream = client.beta.threads.create_and_run(
-            assistant_id=assistant.id,
+            assistant_id=st.secrets["ASST_ID"],
             thread={"messages": msg_history},  # type: ignore
             stream=True,
         )
