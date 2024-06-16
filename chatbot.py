@@ -14,7 +14,7 @@ if "messages" not in ss:
     ss.messages = []
 
 if "oaik" not in ss:
-    ss.oaik = st.secrets["OPENAI_API_KEY"]
+    ss["oaik"] = st.secrets["OPENAI_API_KEY"]
 
 
 # functions
@@ -35,9 +35,8 @@ def init_assistant():
     client = OpenAI(api_key=ss.oaik)
 
     assistant = client.beta.assistants.create(
-        name="Math Tutor",
-        instructions="You are a personal math tutor. Write and run code to answer math questions.",
-        tools=[{"type": "code_interpreter"}],
+        name="Gyeonggi Governor's Award Assistant",
+        description="이 GPT는 경기도 도지사 포상 업무 지침에 관한 상세한 정보를 제공하기 위해 설계되었습니다. 사용자에게 포상 규정, 절차, 제출 서류, 심사 일정 등과 관련된 구체적인 지침을 설명하고, 명확한 안내를 제공함으로써 포상 업무의 효율성을 높이고자 합니다.",
         model="gpt-4o",
     )
 
