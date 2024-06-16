@@ -77,8 +77,10 @@ def chatWidget():
         ]
 
         ss.stream = client.beta.threads.create_and_run(
-            assistant_id=assistant.id, thread={"messages": msg_history}, stream=True  # type: ignore
-        )  # type: ignore
+            assistant_id=assistant.id,
+            thread={"messages": msg_history},  # type: ignore
+            stream=True,
+        )
 
         with st.chat_message("assistant"):
             response = st.write_stream(data_streamer)
