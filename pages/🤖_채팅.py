@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
-from chatbot import chatWidget, init
 
 with open("./config.yaml") as file:
     config = yaml.load(file, Loader=SafeLoader)
@@ -26,6 +25,8 @@ name, authentication_status, username = authenticator.login(
 
 if st.session_state["authentication_status"]:
     authenticator.logout("로그아웃", "main")
+    from chatbot import chatWidget, init
+
     init()
     chatWidget()
 
