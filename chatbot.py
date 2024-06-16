@@ -11,7 +11,12 @@ if "stream" not in ss:
     ss.stream = None
 
 if "messages" not in ss:
-    ss.messages = []
+    ss.messages = [
+        {
+            "role": "assistant",
+            "content": "안녕하세요! 저는 경기도 포상 도우미입니다. 경기도 2024년도 도지사 포상 업무지침에 관한 정보를 제공해 드리며, 포상 절차, 기준, 필요한 서류 등을 안내해 드립니다. 궁금한 사항이나 도움이 필요한 부분이 있으면 언제든지 질문해 주세요!",
+        }
+    ]
 
 if "oaik" not in ss:
     ss["oaik"] = st.secrets["OPENAI_API_KEY"]
@@ -58,7 +63,7 @@ def chatWidget():
             st.markdown(message["content"])
 
     # prompt user
-    if prompt := st.chat_input("What is up?"):
+    if prompt := st.chat_input("궁금한 내용을 질문하세요!"):
 
         ss.messages.append({"role": "user", "content": prompt})
 

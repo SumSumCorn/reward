@@ -17,7 +17,7 @@ authenticator = stauth.Authenticate(
 name, authentication_status, username = authenticator.login(max_login_attempts=3)
 
 if st.session_state["authentication_status"]:
-    authenticator.logout("Logout", "main")
+    authenticator.logout("로그아웃", "main")
     chatWidget()
 
 elif st.session_state["authentication_status"] == False:
