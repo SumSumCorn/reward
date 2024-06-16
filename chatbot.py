@@ -40,12 +40,7 @@ def data_streamer():
 def init_assistant():
     """Define client and assistant"""
     client = OpenAI(api_key=ss.oaik)
-
-    assistant = client.beta.assistants.create(
-        name="Gyeonggi Governor's Award Assistant",
-        description="이 GPT는 경기도 도지사 포상 업무 지침에 관한 상세한 정보를 제공하기 위해 설계되었습니다. 사용자에게 포상 규정, 절차, 제출 서류, 심사 일정 등과 관련된 구체적인 지침을 설명하고, 명확한 안내를 제공함으로써 포상 업무의 효율성을 높이고자 합니다.",
-        model="gpt-3.5-turbo",
-    )
+    assistant = client.beta.assistants.retrieve(assistant_id=st.secrets["ASST_ID"])
 
     return client, assistant
 
