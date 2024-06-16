@@ -6,17 +6,19 @@ from openai import OpenAI
 import time
 
 
-# variables
-if "stream" not in ss:
-    ss.stream = None
+def init():
+    # variables
+    if "stream" not in ss:
+        ss.stream = None
 
-if "messages" not in ss:
-    ss.messages = [
-        {
-            "role": "assistant",
-            "content": "안녕하세요! 저는 경기도 포상 도우미입니다. 경기도 2024년도 도지사 포상 업무지침에 관한 정보를 제공해 드리며, 포상 절차, 기준, 필요한 서류 등을 안내해 드립니다. 궁금한 사항이나 도움이 필요한 부분이 있으면 언제든지 질문해 주세요!",
-        }
-    ]
+    if "messages" not in ss:
+        ss.messages = [
+            {
+                "role": "assistant",
+                "content": "안녕하세요! 저는 경기도 포상 도우미입니다. 경기도 2024년도 도지사 포상 업무지침에 관한 정보를 제공해 드리며, 포상 절차, 기준, 필요한 서류 등을 안내해 드립니다. 궁금한 사항이나 도움이 필요한 부분이 있으면 언제든지 질문해 주세요!",
+            }
+        ]
+
 
 if "oaik" not in ss:
     ss["oaik"] = st.secrets["OPENAI_API_KEY"]
@@ -42,14 +44,13 @@ def init_assistant():
     assistant = client.beta.assistants.create(
         name="Gyeonggi Governor's Award Assistant",
         description="이 GPT는 경기도 도지사 포상 업무 지침에 관한 상세한 정보를 제공하기 위해 설계되었습니다. 사용자에게 포상 규정, 절차, 제출 서류, 심사 일정 등과 관련된 구체적인 지침을 설명하고, 명확한 안내를 제공함으로써 포상 업무의 효율성을 높이고자 합니다.",
-        model="gpt-4o",
+        model="gpt-3.5-turbo",
     )
 
     return client, assistant
 
 
 def chatWidget():
-    ss["oaik"] = st.secrets["OPENAI_API_KEY"]
     if "oaik" not in ss:
         st.text_input("enter openai api key", type="password", key="oaik")
         st.error("Please enter your open api key!")
