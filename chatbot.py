@@ -39,7 +39,7 @@ def data_streamer():
 
 def init_assistant():
     """Define client and assistant"""
-    client = OpenAI(api_key=ss.oaik)
+    client = OpenAI(api_key=ss.oaik, base_url=st.secrets["BASE_URL"])
     assistant = client.beta.assistants.retrieve(assistant_id=st.secrets["ASST_ID"])
 
     return client, assistant
